@@ -10,6 +10,11 @@ program Ising_2D_Metropolis
 
     data M, M0, mc /8192, 1000, 1/            ! M: pasos de medición, M0: termalización, mc: actualizaciones
 
+    open(unit=66, file='fort.66', status='replace', action='write')
+    open(unit=88, file='fort.88', status='replace', action='write')
+    open(unit=99, file='fort.99', status='replace', action='write')
+    print *, 'Archivos fort.66, fort.88 y fort.99 abiertos correctamente'
+
     ! Generar los vectores de los vecinos con condiciones de contorno periódicas
     call neighbors(n1, n2, n3, n4, L)
 
@@ -77,6 +82,10 @@ program Ising_2D_Metropolis
         write(66, '(f10.6, 1p5e16.6)') T, rm, rm2, error, mc * tau, c
 
 999 continue
+
+close(66)
+close(88)
+close(99)
 
 end program Ising_2D_Metropolis
 
