@@ -1,9 +1,9 @@
 ! Simulación de Monte Carlo del modelo de Ising en red cuadrada 2D
-! con condiciones de contorno periódicas
+! con condiciones de contorno periódicas, constante de intercambio J=1
 program Ising_2D_Metropolis
 
     implicit double precision(a-h,o-z)
-    parameter (L=80, N=L*L)      ! L: longitud de la red, N: número total de espines
+    parameter (L=320, N=L*L)      ! L: longitud de la red, N: número total de espines
 
     integer s(N), n1(N), n2(N), n3(N), n4(N)  ! Espines y vecinos
     dimension h(-4:4)                         ! Factores de Boltzmann-Gibbs
@@ -52,7 +52,7 @@ program Ising_2D_Metropolis
             print *, 'Guardando configuracion para T =', T
             do i = 1, N, L
                 i_end = min(i + L - 1, N)
-                write(99, '(80I3)') (s(j), j=i,i_end)
+                write(99, '(320I3)') (s(j), j=i,i_end)
             enddo
             write(99, *)  ! Línea vacía entre configuraciones
             flush(99)

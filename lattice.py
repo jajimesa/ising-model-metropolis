@@ -51,14 +51,16 @@ def graficar_configuraciones(configuraciones, temperaturas, L):
         axs = [axs]
         
     for i, (config, T) in enumerate(zip(configuraciones[:n_plots], temperaturas[:n_plots])):
-        axs[i].imshow(config, cmap="gray_r", interpolation="none")
-        axs[i].set_title(f"T = {T}")
+        axs[i].imshow(config, cmap="gray", interpolation="none")
+    #   axs[i].imshow(config, cmap="gray_r", interpolation="none")
+        if  T!=2.269: axs[i].set_title(f"$T = {T}$")
+        else: axs[i].set_title("$T = T_c$")
         axs[i].axis("off")
     
     plt.tight_layout()
+    plt.savefig(fname="lattice.png", dpi=300)
     plt.show()
 
-# Parámetros
 L = 80
 temperaturas = [4.0, 2.269, 2.0, 1.0]
 
